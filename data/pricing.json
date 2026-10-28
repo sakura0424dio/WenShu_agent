@@ -1,0 +1,58 @@
+{
+  "version": "pricing-v1",
+  "currency": "CNY",
+  "notice": "合成演示价格，仅用于本项目复算，不代表真实市场报价。",
+  "plans": {
+    "P-STD": {
+      "name": "标准图文方案",
+      "tier_rank": 2,
+      "material_tier": "standard",
+      "script_level": "standard",
+      "production_level": "standard",
+      "prices": {
+        "materials": "5.00",
+        "script": "3.00",
+        "production": "4.00"
+      },
+      "production_minutes": 180
+    },
+    "P-LITE": {
+      "name": "轻量图文方案",
+      "tier_rank": 1,
+      "material_tier": "basic",
+      "script_level": "lite",
+      "production_level": "lite",
+      "prices": {
+        "materials": "2.00",
+        "script": "2.00",
+        "production": "4.00"
+      },
+      "production_minutes": 120
+    },
+    "P-VIDEO": {
+      "name": "短视频方案",
+      "tier_rank": 3,
+      "material_tier": "premium",
+      "script_level": "video",
+      "production_level": "video",
+      "prices": {
+        "materials": "7.00",
+        "script": "4.00",
+        "production": "4.00"
+      },
+      "production_minutes": 300
+    }
+  },
+  "tool_fees": {
+    "search_materials": "0.00",
+    "generate_script": "0.00",
+    "estimate_cost": "0.00",
+    "save_plan": "0.00"
+  },
+  "tool_latency_ms": {
+    "search_materials": 3,
+    "generate_script": 5,
+    "estimate_cost": 2,
+    "save_plan": 4
+  }
+}

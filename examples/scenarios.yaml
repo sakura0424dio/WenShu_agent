@@ -1,0 +1,135 @@
+# 示例场景清单。由 examples/run_examples.py 读取并通过 HTTP API 实际执行。
+# 固定时钟：2026-11-01T09:00:00+08:00（config.yaml 或 APP_FIXED_NOW）
+common_deadline: "2026-11-05T18:00:00+08:00"
+
+scenarios:
+  - name: "01-normal"
+    title: "正常完成：预算 20，P-STD 12"
+    request:
+      topic: "春季露营装备种草"
+      budget: 20
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+    idempotency_key: "example-01-normal"
+
+  - name: "02-missing-input"
+    title: "缺少预算：不猜测，直接返回缺失项"
+    request:
+      topic: "春季露营装备种草"
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+    idempotency_key: "example-02-missing-input"
+
+  - name: "03-tool-failure"
+    title: "工具失败：P-STD 脚本首次超时，改选 P-LITE"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+        failure_injection:
+          - tool: "generate_script"
+            mode: "error"
+            call_ordinal: 1
+            times: 1
+            error_code: "TOOL_TIMEOUT"
+            message: "注入：脚本服务首次超时"
+    idempotency_key: "example-03-tool-failure"
+
+  - name: "04-budget-overrun"
+    title: "参考场景 10/12/8：P-STD 超预算，改选 P-LITE"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+    idempotency_key: "example-04-budget-overrun"
+
+  - name: "05-no-feasible"
+    title: "无可行方案：预算 5，最低可行成本 8"
+    request:
+      topic: "春季露营装备种草"
+      budget: 5
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+    idempotency_key: "example-05-no-feasible"
+
+  - name: "06-partial-result"
+    title: "部分成功：检索只返回基础素材，降级为 P-LITE"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+        failure_injection:
+          - tool: "search_materials"
+            mode: "partial"
+            call_ordinal: 1
+            times: 1
+            warnings: ["仅返回基础素材"]
+    idempotency_key: "example-06-partial-result"
+
+  - name: "07-resume"
+    title: "失败步骤续跑：保存持续失败后，从未完成父运行继续"
+    parent_name: "07-resume-parent"
+    child_name: "07-resume-child"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+        failure_injection:
+          - tool: "save_plan"
+            mode: "error"
+            call_ordinal: 1
+            times: 99
+            error_code: "TOOL_TIMEOUT"
+            message: "注入：保存服务持续超时"
+    idempotency_key: "example-07-resume-parent"
+    resume: true
+
+  - name: "08-repeat"
+    title: "重复执行：相同 Idempotency-Key 返回同一运行"
+    first_name: "08-repeat-first"
+    second_name: "08-repeat-second"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 8
+    idempotency_key: "example-08-repeat"
+    repeat: true
+
+  - name: "09-tool-call-limit"
+    title: "达到工具调用上限：保留成功步骤并报告剩余任务"
+    request:
+      topic: "春季露营装备种草"
+      budget: 10
+      deadline: "2026-11-05T18:00:00+08:00"
+      options:
+        model_mode: "mock"
+        max_steps: 12
+        max_tool_calls: 3
+    idempotency_key: "example-09-tool-call-limit"

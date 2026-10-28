@@ -1,0 +1,10 @@
+{
+  "topic": "春季露营装备种草",
+  "budget": 10,
+  "deadline": "2026-11-05T18:00:00+08:00",
+  "options": {
+    "model_mode": "deepseek",
+    "max_steps": 12,
+    "max_tool_calls": 8
+  }
+}

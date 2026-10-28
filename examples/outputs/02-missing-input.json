@@ -1,0 +1,57 @@
+{
+  "run_id": "run_953b89e5989c4ee1",
+  "parent_run_id": null,
+  "attempt": 1,
+  "status": "incomplete",
+  "model_mode": "mock",
+  "disclaimer": "Mock 模式只验证流程、异常处理与状态一致性，不证明真实大模型的决策效果。",
+  "input": {
+    "topic": "春季露营装备种草",
+    "budget": null,
+    "deadline": "2026-11-05T18:00:00+08:00",
+    "clock_mode": "fixed",
+    "evaluated_at": null
+  },
+  "plan": null,
+  "steps": [],
+  "tool_results": {
+    "materials": [],
+    "scripts": {},
+    "estimates": {},
+    "saved_plan": null,
+    "superseded_tasks": []
+  },
+  "cost": null,
+  "time": null,
+  "saved_plan": null,
+  "incomplete": {
+    "code": "MISSING_REQUIRED_INPUT",
+    "message": "缺少必填输入：budget",
+    "missing_fields": [
+      "budget"
+    ],
+    "invalid_fields": [],
+    "gap": {
+      "missing_fields": [
+        "budget"
+      ],
+      "invalid_fields": []
+    },
+    "completed_steps": [],
+    "failed_steps": [],
+    "preserved_results": [],
+    "next_actions": [
+      "补充 budget 后重新提交"
+    ]
+  },
+  "caveats": [],
+  "decisions": [],
+  "reused_steps": [],
+  "failure_injection": [],
+  "trace": {
+    "path": "examples/traces/run_953b89e5989c4ee1.jsonl",
+    "decision_count": 0
+  },
+  "deduplicated": false,
+  "resume_noop": false
+}

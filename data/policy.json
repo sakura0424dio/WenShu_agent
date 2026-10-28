@@ -1,0 +1,9 @@
+{
+  "version": "policy-v1",
+  "max_steps": 12,
+  "max_tool_calls": 8,
+  "max_steps_hard": 20,
+  "max_tool_calls_hard": 12,
+  "required_materials_per_plan": 2,
+  "plan_priority": ["P-STD", "P-LITE", "P-VIDEO"]
+}

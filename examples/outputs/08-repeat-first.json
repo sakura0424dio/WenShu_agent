@@ -1,0 +1,939 @@
+{
+  "run_id": "run_03974794038f4d7f",
+  "parent_run_id": null,
+  "attempt": 1,
+  "status": "completed",
+  "model_mode": "mock",
+  "disclaimer": "Mock 模式只验证流程、异常处理与状态一致性，不证明真实大模型的决策效果。",
+  "input": {
+    "topic": "春季露营装备种草",
+    "budget": "10",
+    "deadline": "2026-11-05T18:00:00+08:00",
+    "clock_mode": "fixed",
+    "evaluated_at": "2026-11-01T09:00:00+08:00"
+  },
+  "plan": {
+    "selected_plan_id": "P-LITE",
+    "title": "春季露营装备种草 · 轻量图文方案",
+    "name": "轻量图文方案",
+    "production_minutes": 120,
+    "tasks": [
+      {
+        "task_id": "search",
+        "name": "检索可用素材",
+        "plan_id": null,
+        "status": "succeeded",
+        "depends_on": [],
+        "evidence_step_id": "S001",
+        "branch": "active",
+        "attempts": 1
+      },
+      {
+        "task_id": "script:P-LITE",
+        "name": "生成 P-LITE 脚本",
+        "plan_id": "P-LITE",
+        "status": "succeeded",
+        "depends_on": [
+          "search"
+        ],
+        "evidence_step_id": "S004",
+        "branch": "active",
+        "attempts": 1
+      },
+      {
+        "task_id": "estimate:P-LITE",
+        "name": "估算 P-LITE 成本",
+        "plan_id": "P-LITE",
+        "status": "succeeded",
+        "depends_on": [
+          "script:P-LITE"
+        ],
+        "evidence_step_id": "S005",
+        "branch": "active",
+        "attempts": 1
+      },
+      {
+        "task_id": "save:P-LITE",
+        "name": "保存 P-LITE 方案",
+        "plan_id": "P-LITE",
+        "status": "succeeded",
+        "depends_on": [
+          "estimate:P-LITE"
+        ],
+        "evidence_step_id": "S006",
+        "branch": "active",
+        "attempts": 1
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step_id": "S001",
+      "decision_id": "D001",
+      "task_id": "search",
+      "tool": "search_materials",
+      "arguments": {
+        "topic": "春季露营装备种草",
+        "keywords": [],
+        "limit": 6
+      },
+      "attempt": 1,
+      "status": "success",
+      "result_summary": "检索到 6 个素材，可用方案: P-LITE, P-STD, P-VIDEO",
+      "data": {
+        "kind": "materials",
+        "materials": [
+          {
+            "material_id": "M-001",
+            "title": "春日营地全景",
+            "type": "image",
+            "tier": "basic",
+            "tags": [
+              "春季",
+              "露营",
+              "户外"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          },
+          {
+            "material_id": "M-002",
+            "title": "轻量帐篷特写",
+            "type": "image",
+            "tier": "basic",
+            "tags": [
+              "露营",
+              "装备",
+              "帐篷"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          },
+          {
+            "material_id": "M-003",
+            "title": "露营装备平铺图",
+            "type": "image",
+            "tier": "standard",
+            "tags": [
+              "露营",
+              "装备",
+              "清单"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          },
+          {
+            "material_id": "M-004",
+            "title": "山野咖啡场景",
+            "type": "image",
+            "tier": "standard",
+            "tags": [
+              "露营",
+              "生活方式",
+              "咖啡"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          },
+          {
+            "material_id": "M-005",
+            "title": "篝火夜景视频",
+            "type": "video",
+            "tier": "premium",
+            "tags": [
+              "露营",
+              "夜景",
+              "氛围"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          },
+          {
+            "material_id": "M-006",
+            "title": "春季露营短片素材",
+            "type": "video",
+            "tier": "premium",
+            "tags": [
+              "春季",
+              "露营",
+              "短视频"
+            ],
+            "available": true,
+            "license": "synthetic-demo"
+          }
+        ],
+        "candidate_plans": [
+          {
+            "plan_id": "P-LITE",
+            "name": "轻量图文方案",
+            "tier_rank": 1,
+            "material_tier": "basic",
+            "script_level": "lite",
+            "production_level": "lite",
+            "production_minutes": 120,
+            "available": true,
+            "material_ids": [
+              "M-001",
+              "M-002"
+            ],
+            "unavailable_reason": null
+          },
+          {
+            "plan_id": "P-STD",
+            "name": "标准图文方案",
+            "tier_rank": 2,
+            "material_tier": "standard",
+            "script_level": "standard",
+            "production_level": "standard",
+            "production_minutes": 180,
+            "available": true,
+            "material_ids": [
+              "M-003",
+              "M-004"
+            ],
+            "unavailable_reason": null
+          },
+          {
+            "plan_id": "P-VIDEO",
+            "name": "短视频方案",
+            "tier_rank": 3,
+            "material_tier": "premium",
+            "script_level": "video",
+            "production_level": "video",
+            "production_minutes": 300,
+            "available": true,
+            "material_ids": [
+              "M-005",
+              "M-006"
+            ],
+            "unavailable_reason": null
+          }
+        ],
+        "candidate_plan_ids": [
+          "P-LITE",
+          "P-STD",
+          "P-VIDEO"
+        ],
+        "total_found": 6,
+        "data_version": "materials-v1",
+        "license": "synthetic-demo"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.336907+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    },
+    {
+      "step_id": "S002",
+      "decision_id": "D002",
+      "task_id": "script:P-STD",
+      "tool": "generate_script",
+      "arguments": {
+        "plan_id": "P-STD",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "tone": "轻松种草",
+        "duration_seconds": 45
+      },
+      "attempt": 1,
+      "status": "success",
+      "result_summary": "脚本 script_2accabe1ebe1 生成完成，质量 full",
+      "data": {
+        "kind": "script",
+        "script_id": "script_2accabe1ebe1",
+        "plan_id": "P-STD",
+        "plan_name": "标准图文方案",
+        "title": "春季露营装备种草 · 标准图文方案",
+        "tone": "轻松种草",
+        "duration_seconds": 45,
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "sections": [
+          {
+            "name": "开场钩子",
+            "text": "春季露营装备种草｜开场钩子：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "场景痛点",
+            "text": "春季露营装备种草｜场景痛点：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "装备清单",
+            "text": "春季露营装备种草｜装备清单：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "行动号召",
+            "text": "春季露营装备种草｜行动号召：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          }
+        ],
+        "word_count": 184,
+        "quality": "full"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.338906+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    },
+    {
+      "step_id": "S003",
+      "decision_id": "D003",
+      "task_id": "estimate:P-STD",
+      "tool": "estimate_cost",
+      "arguments": {
+        "plan_id": "P-STD",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "script_id": "script_2accabe1ebe1"
+      },
+      "attempt": 1,
+      "status": "success",
+      "result_summary": "P-STD 合计 12.00，超预算，时间可行",
+      "data": {
+        "estimate_id": "est_3fcb7ab67796",
+        "plan_id": "P-STD",
+        "plan_name": "标准图文方案",
+        "currency": "CNY",
+        "pricing_version": "pricing-v1",
+        "rules_checksum": "a68540cd45011b6debed1d7a5eeaf5c900f2866be35a857412e327c8a88910ff",
+        "script_id": "script_2accabe1ebe1",
+        "script_quality": "full",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "line_items": [
+          {
+            "item": "素材包 standard",
+            "amount": "5.00"
+          },
+          {
+            "item": "脚本生成 standard",
+            "amount": "3.00"
+          },
+          {
+            "item": "制作装配 standard",
+            "amount": "4.00"
+          }
+        ],
+        "total": "12.00",
+        "budget": "10.00",
+        "remaining": "-2.00",
+        "within_budget": false,
+        "required_minutes": 180,
+        "available_minutes": 6300,
+        "within_deadline": true,
+        "evaluated_at": "2026-11-01T09:00:00+08:00"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.340907+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    },
+    {
+      "step_id": "S004",
+      "decision_id": "D004",
+      "task_id": "script:P-LITE",
+      "tool": "generate_script",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "tone": "轻松种草",
+        "duration_seconds": 45
+      },
+      "attempt": 2,
+      "status": "success",
+      "result_summary": "脚本 script_15b8e7a9291c 生成完成，质量 full",
+      "data": {
+        "kind": "script",
+        "script_id": "script_15b8e7a9291c",
+        "plan_id": "P-LITE",
+        "plan_name": "轻量图文方案",
+        "title": "春季露营装备种草 · 轻量图文方案",
+        "tone": "轻松种草",
+        "duration_seconds": 45,
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "sections": [
+          {
+            "name": "开场钩子",
+            "text": "春季露营装备种草｜开场钩子：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          },
+          {
+            "name": "轻量清单",
+            "text": "春季露营装备种草｜轻量清单：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          },
+          {
+            "name": "行动号召",
+            "text": "春季露营装备种草｜行动号召：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          }
+        ],
+        "word_count": 138,
+        "quality": "full"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.342907+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    },
+    {
+      "step_id": "S005",
+      "decision_id": "D005",
+      "task_id": "estimate:P-LITE",
+      "tool": "estimate_cost",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "script_id": "script_15b8e7a9291c"
+      },
+      "attempt": 2,
+      "status": "success",
+      "result_summary": "P-LITE 合计 8.00，预算内，时间可行",
+      "data": {
+        "estimate_id": "est_ea8b494f7e6c",
+        "plan_id": "P-LITE",
+        "plan_name": "轻量图文方案",
+        "currency": "CNY",
+        "pricing_version": "pricing-v1",
+        "rules_checksum": "a68540cd45011b6debed1d7a5eeaf5c900f2866be35a857412e327c8a88910ff",
+        "script_id": "script_15b8e7a9291c",
+        "script_quality": "full",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "line_items": [
+          {
+            "item": "素材包 basic",
+            "amount": "2.00"
+          },
+          {
+            "item": "脚本生成 lite",
+            "amount": "2.00"
+          },
+          {
+            "item": "制作装配 lite",
+            "amount": "4.00"
+          }
+        ],
+        "total": "8.00",
+        "budget": "10.00",
+        "remaining": "2.00",
+        "within_budget": true,
+        "required_minutes": 120,
+        "available_minutes": 6300,
+        "within_deadline": true,
+        "evaluated_at": "2026-11-01T09:00:00+08:00"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.344952+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    },
+    {
+      "step_id": "S006",
+      "decision_id": "D006",
+      "task_id": "save:P-LITE",
+      "tool": "save_plan",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "estimate_id": "est_ea8b494f7e6c",
+        "script_id": "script_15b8e7a9291c",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ]
+      },
+      "attempt": 1,
+      "status": "success",
+      "result_summary": "方案已保存: plan_0e544a77bb6d（already_exists=True）",
+      "data": {
+        "kind": "saved_plan",
+        "plan_id": "plan_0e544a77bb6d",
+        "content_hash": "sha256:0e544a77bb6decfa0976e7de9a3c292f217bdedaa9b6f58ad49a18e00939759b",
+        "path": "storage/plans/plan_0e544a77bb6d.json",
+        "already_exists": true,
+        "saved_at": "2026-11-01T09:00:00+08:00",
+        "estimate_id": "est_ea8b494f7e6c",
+        "script_id": "script_15b8e7a9291c",
+        "plan_type": "P-LITE",
+        "total": "8.00",
+        "quality": "full"
+      },
+      "error": null,
+      "warnings": [],
+      "injected": false,
+      "latency_ms": 0,
+      "created_at": "2026-10-28T17:44:58.345454+08:00",
+      "source_run_id": "run_03974794038f4d7f",
+      "from_parent_run": false
+    }
+  ],
+  "tool_results": {
+    "materials": [
+      {
+        "material_id": "M-001",
+        "title": "春日营地全景",
+        "type": "image",
+        "tier": "basic",
+        "tags": [
+          "春季",
+          "露营",
+          "户外"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      },
+      {
+        "material_id": "M-002",
+        "title": "轻量帐篷特写",
+        "type": "image",
+        "tier": "basic",
+        "tags": [
+          "露营",
+          "装备",
+          "帐篷"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      },
+      {
+        "material_id": "M-003",
+        "title": "露营装备平铺图",
+        "type": "image",
+        "tier": "standard",
+        "tags": [
+          "露营",
+          "装备",
+          "清单"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      },
+      {
+        "material_id": "M-004",
+        "title": "山野咖啡场景",
+        "type": "image",
+        "tier": "standard",
+        "tags": [
+          "露营",
+          "生活方式",
+          "咖啡"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      },
+      {
+        "material_id": "M-005",
+        "title": "篝火夜景视频",
+        "type": "video",
+        "tier": "premium",
+        "tags": [
+          "露营",
+          "夜景",
+          "氛围"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      },
+      {
+        "material_id": "M-006",
+        "title": "春季露营短片素材",
+        "type": "video",
+        "tier": "premium",
+        "tags": [
+          "春季",
+          "露营",
+          "短视频"
+        ],
+        "available": true,
+        "license": "synthetic-demo"
+      }
+    ],
+    "scripts": {
+      "P-STD": {
+        "kind": "script",
+        "script_id": "script_2accabe1ebe1",
+        "plan_id": "P-STD",
+        "plan_name": "标准图文方案",
+        "title": "春季露营装备种草 · 标准图文方案",
+        "tone": "轻松种草",
+        "duration_seconds": 45,
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "sections": [
+          {
+            "name": "开场钩子",
+            "text": "春季露营装备种草｜开场钩子：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "场景痛点",
+            "text": "春季露营装备种草｜场景痛点：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "装备清单",
+            "text": "春季露营装备种草｜装备清单：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          },
+          {
+            "name": "行动号召",
+            "text": "春季露营装备种草｜行动号召：以「轻松种草」口吻，结合标准图文方案的素材，控制在 11 秒内。"
+          }
+        ],
+        "word_count": 184,
+        "quality": "full"
+      },
+      "P-LITE": {
+        "kind": "script",
+        "script_id": "script_15b8e7a9291c",
+        "plan_id": "P-LITE",
+        "plan_name": "轻量图文方案",
+        "title": "春季露营装备种草 · 轻量图文方案",
+        "tone": "轻松种草",
+        "duration_seconds": 45,
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "sections": [
+          {
+            "name": "开场钩子",
+            "text": "春季露营装备种草｜开场钩子：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          },
+          {
+            "name": "轻量清单",
+            "text": "春季露营装备种草｜轻量清单：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          },
+          {
+            "name": "行动号召",
+            "text": "春季露营装备种草｜行动号召：以「轻松种草」口吻，结合轻量图文方案的素材，控制在 15 秒内。"
+          }
+        ],
+        "word_count": 138,
+        "quality": "full"
+      }
+    },
+    "estimates": {
+      "P-STD": {
+        "estimate_id": "est_3fcb7ab67796",
+        "plan_id": "P-STD",
+        "plan_name": "标准图文方案",
+        "currency": "CNY",
+        "pricing_version": "pricing-v1",
+        "rules_checksum": "a68540cd45011b6debed1d7a5eeaf5c900f2866be35a857412e327c8a88910ff",
+        "script_id": "script_2accabe1ebe1",
+        "script_quality": "full",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "line_items": [
+          {
+            "item": "素材包 standard",
+            "amount": "5.00"
+          },
+          {
+            "item": "脚本生成 standard",
+            "amount": "3.00"
+          },
+          {
+            "item": "制作装配 standard",
+            "amount": "4.00"
+          }
+        ],
+        "total": "12.00",
+        "budget": "10.00",
+        "remaining": "-2.00",
+        "within_budget": false,
+        "required_minutes": 180,
+        "available_minutes": 6300,
+        "within_deadline": true,
+        "evaluated_at": "2026-11-01T09:00:00+08:00"
+      },
+      "P-LITE": {
+        "estimate_id": "est_ea8b494f7e6c",
+        "plan_id": "P-LITE",
+        "plan_name": "轻量图文方案",
+        "currency": "CNY",
+        "pricing_version": "pricing-v1",
+        "rules_checksum": "a68540cd45011b6debed1d7a5eeaf5c900f2866be35a857412e327c8a88910ff",
+        "script_id": "script_15b8e7a9291c",
+        "script_quality": "full",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "line_items": [
+          {
+            "item": "素材包 basic",
+            "amount": "2.00"
+          },
+          {
+            "item": "脚本生成 lite",
+            "amount": "2.00"
+          },
+          {
+            "item": "制作装配 lite",
+            "amount": "4.00"
+          }
+        ],
+        "total": "8.00",
+        "budget": "10.00",
+        "remaining": "2.00",
+        "within_budget": true,
+        "required_minutes": 120,
+        "available_minutes": 6300,
+        "within_deadline": true,
+        "evaluated_at": "2026-11-01T09:00:00+08:00"
+      }
+    },
+    "saved_plan": {
+      "kind": "saved_plan",
+      "plan_id": "plan_0e544a77bb6d",
+      "content_hash": "sha256:0e544a77bb6decfa0976e7de9a3c292f217bdedaa9b6f58ad49a18e00939759b",
+      "path": "storage/plans/plan_0e544a77bb6d.json",
+      "already_exists": true,
+      "saved_at": "2026-11-01T09:00:00+08:00",
+      "estimate_id": "est_ea8b494f7e6c",
+      "script_id": "script_15b8e7a9291c",
+      "plan_type": "P-LITE",
+      "total": "8.00",
+      "quality": "full"
+    },
+    "superseded_tasks": [
+      {
+        "task_id": "script:P-STD",
+        "name": "生成 P-STD 脚本",
+        "plan_id": "P-STD",
+        "status": "succeeded",
+        "depends_on": [
+          "search"
+        ],
+        "evidence_step_id": "S002",
+        "branch": "superseded",
+        "attempts": 1
+      },
+      {
+        "task_id": "estimate:P-STD",
+        "name": "估算 P-STD 成本",
+        "plan_id": "P-STD",
+        "status": "succeeded",
+        "depends_on": [
+          "script:P-STD"
+        ],
+        "evidence_step_id": "S003",
+        "branch": "superseded",
+        "attempts": 1
+      }
+    ]
+  },
+  "cost": {
+    "currency": "CNY",
+    "pricing_version": "pricing-v1",
+    "estimate_id": "est_ea8b494f7e6c",
+    "line_items": [
+      {
+        "item": "素材包 basic",
+        "amount": "2.00"
+      },
+      {
+        "item": "脚本生成 lite",
+        "amount": "2.00"
+      },
+      {
+        "item": "制作装配 lite",
+        "amount": "4.00"
+      }
+    ],
+    "total": "8.00",
+    "budget": "10.00",
+    "remaining": "2.00",
+    "within_budget": true
+  },
+  "time": {
+    "required_minutes": 120,
+    "available_minutes": 6300,
+    "within_deadline": true,
+    "evaluated_at": "2026-11-01T09:00:00+08:00"
+  },
+  "saved_plan": {
+    "kind": "saved_plan",
+    "plan_id": "plan_0e544a77bb6d",
+    "content_hash": "sha256:0e544a77bb6decfa0976e7de9a3c292f217bdedaa9b6f58ad49a18e00939759b",
+    "path": "storage/plans/plan_0e544a77bb6d.json",
+    "already_exists": true,
+    "saved_at": "2026-11-01T09:00:00+08:00",
+    "estimate_id": "est_ea8b494f7e6c",
+    "script_id": "script_15b8e7a9291c",
+    "plan_type": "P-LITE",
+    "total": "8.00",
+    "quality": "full"
+  },
+  "incomplete": null,
+  "caveats": [],
+  "decisions": [
+    {
+      "decision_id": "D001",
+      "step": 1,
+      "action": "call_tool",
+      "tool": "search_materials",
+      "arguments": {
+        "topic": "春季露营装备种草",
+        "keywords": [],
+        "limit": 6
+      },
+      "reason_code": "INITIAL_DISCOVERY",
+      "decision_basis": "尚未获得可用素材，先检索。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.335914+08:00"
+    },
+    {
+      "decision_id": "D002",
+      "step": 2,
+      "action": "call_tool",
+      "tool": "generate_script",
+      "arguments": {
+        "plan_id": "P-STD",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "tone": "轻松种草",
+        "duration_seconds": 45
+      },
+      "reason_code": "GENERATE_SCRIPT",
+      "decision_basis": "为当前方案生成脚本。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.337906+08:00"
+    },
+    {
+      "decision_id": "D003",
+      "step": 3,
+      "action": "call_tool",
+      "tool": "estimate_cost",
+      "arguments": {
+        "plan_id": "P-STD",
+        "material_ids": [
+          "M-003",
+          "M-004"
+        ],
+        "script_id": "script_2accabe1ebe1"
+      },
+      "reason_code": "VERIFY_COST",
+      "decision_basis": "脚本已生成，调用估算工具确认成本与工期。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.339907+08:00"
+    },
+    {
+      "decision_id": "D004",
+      "step": 4,
+      "action": "call_tool",
+      "tool": "generate_script",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "tone": "轻松种草",
+        "duration_seconds": 45
+      },
+      "reason_code": "COST_OVER_BUDGET_REPLAN",
+      "decision_basis": "P-STD 估算 12.00，不满足约束；改用 P-LITE 重新评估。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.341929+08:00"
+    },
+    {
+      "decision_id": "D005",
+      "step": 5,
+      "action": "call_tool",
+      "tool": "estimate_cost",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ],
+        "script_id": "script_15b8e7a9291c"
+      },
+      "reason_code": "VERIFY_COST",
+      "decision_basis": "脚本已生成，调用估算工具确认成本与工期。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.343965+08:00"
+    },
+    {
+      "decision_id": "D006",
+      "step": 6,
+      "action": "call_tool",
+      "tool": "save_plan",
+      "arguments": {
+        "plan_id": "P-LITE",
+        "estimate_id": "est_ea8b494f7e6c",
+        "script_id": "script_15b8e7a9291c",
+        "material_ids": [
+          "M-001",
+          "M-002"
+        ]
+      },
+      "reason_code": "SAVE_DELIVERABLE",
+      "decision_basis": "P-LITE 估算 8.00 在预算内，保存方案。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.345454+08:00"
+    },
+    {
+      "decision_id": "D007",
+      "step": 7,
+      "action": "finish",
+      "tool": null,
+      "arguments": {},
+      "reason_code": "ALL_DONE",
+      "decision_basis": "方案已保存，可以结束。",
+      "stop_reason": null,
+      "model_mode": "mock",
+      "created_at": "2026-10-28T17:44:58.347029+08:00"
+    }
+  ],
+  "reused_steps": [],
+  "failure_injection": [],
+  "trace": {
+    "path": "examples/traces/run_03974794038f4d7f.jsonl",
+    "decision_count": 7
+  },
+  "deduplicated": false,
+  "resume_noop": false
+}
